@@ -11,7 +11,7 @@
             <br>
             <input type="radio" name="type" value="HFT" <?php if (isset($_POST['type']) && ($_POST['type'] == 'HFT')) echo 'checked="checked" '; ?> > HFT
             <input type="radio" name="type" value="Temp"<?php if (isset($_POST['type']) && ($_POST['type'] == 'Temp')) echo 'checked="checked" '; ?> > Temp
-            <input type="radio" name="type" value="All" <?php if (isset($_POST['type']) && ($_POST['type'] == 'All')) echo 'checked="checked" '; ?> >All
+            <input type="radio" name="type" value="All" <?php if (isset($_POST['type']) && ($_POST['type'] == 'All') || !isset($_POST['type'])) echo 'checked="checked" '; ?> >All
                 <br>
             <input type="submit" value="search" id="search" name="search">
 

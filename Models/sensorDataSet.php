@@ -1,28 +1,20 @@
 <?php
 
-require_once ('Models/database.php');
-require_once ('Models/sensorData.php');
+//require_once ('Models/database.php');
+//require_once ('Models/SensorData.php');
+require_once("Models/Core/Model.php");
 require_once ('Models/sensorDataHFT.php');
 require_once ('Models/sensorDataTemp.php');
 
-class sensorDataSet {
-    protected $_dbHandle, $_dbInstance;
-
-    public function __construct() {
-        $this->_dbInstance = Database::getInstance();
-        $this->_dbHandle = $this->_dbInstance->getdbConnection();
-    }
+class SensorDataSet extends Model{
+    var $results = '';
 
     public function fetchAllSensors() {
         $sqlQuery = 'SELECT * FROM Sensors';
 
-        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
-        $statement->execute(); // execute the PDO statement
+        $this->results = $this->db->query($sqlQuery);
 
-        $dataSet = [];
-        while ($row = $statement->fetch()) {
-            $dataSet[] = new sensorData($row);
-        }
+        return $dataSet = $this->results->fetchAll(PDO::FETCH_ASSOC);
         return $dataSet;
     }
 
@@ -51,7 +43,6 @@ class sensorDataSet {
         }
         return $dataSet;
     }
-
 }
 
 

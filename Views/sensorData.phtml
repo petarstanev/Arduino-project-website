@@ -8,10 +8,15 @@
 
         </thead>
         <tbody>
-        <?php foreach ($view->sensorDataSet as $sensorData) {
-            $link="historicaldata.php?node_id=".$sensorData->getNodeID()."&type=".$sensorData->getsensorType();
-            echo '<tr><td>' . $sensorData->getNodeID() . '</td><td>' . $sensorData->getSensorName() . '</td><td>' . $sensorData->getSensorType() . '</td><td><a href='.$link.'>Historical Data</a></td></tr>';
-        } ?>
+        <?php
+        if(isset($results)):
+            foreach ($results as $sensor) {
+           
+            $link="historicaldata.php?node_id=".$sensor['nodeID']."&type=".$sensor['sensor_Type'];
+            echo '<tr><td>' . $sensor['nodeID'] . '</td><td>' . $sensor['sensor_Name'] . '</td><td>' . $sensor['sensor_Type'] . '</td><td><a href='.$link.'>Historical Data</a></td></tr>';
+        }
+        endif;
+        ?>
         </tbody>
     </table>
 </form>

@@ -1,6 +1,5 @@
 <?php
 require_once("Models/Core/Model.php");
-//require_once('Models/database.php');
 /**
  * Created by PhpStorm.
  * User: stb159
@@ -9,16 +8,9 @@ require_once("Models/Core/Model.php");
  */
 class SearchTime extends Model
 {
-    protected $_dbHandle, $_dbInstance;
     var $startTime;
     var $endTime;
     var $result = '';
-
-    public function __construct()
-    {
-        parent::__construct();
-
-    }
 
     public function getHFTResults($startTime, $endTime){
         $this->startTime = $startTime;

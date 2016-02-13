@@ -1,11 +1,11 @@
 <?php
 
-require_once('Models/sensorDataSet.php');
+require_once('Models/SensorDataSet.php');
 
 $view = new stdClass();
 $view->pageTitle = 'Sensor Data';
 
-$sensorDataSet = new sensorDataSet();
-$view->sensorDataSet = $sensorDataSet->fetchAllSensors();
-
+$sensorDataSet = new SensorDataSet();
+$results = $sensorDataSet->fetchAllSensors();
+$view->results = $results;
 require_once('Views/sensorData.phtml');

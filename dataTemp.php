@@ -1,6 +1,6 @@
 <?php
 
-require_once('Models/sensorDataSet.php');
+require_once('Models/SensorDataSet.php');
 require_once('Models/sensorDataTemp.php');
 
 $view = new stdClass();
