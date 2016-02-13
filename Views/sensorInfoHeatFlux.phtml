@@ -1,0 +1,20 @@
+<?php require('template/header.phtml') ?>
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <h3>Sensor Historical Data</h3>
+    <table class="table table-hover">
+        <tr><td>Sensor Node ID: <?php echo $_SESSION['node_id']; ?></td></tr>
+    </table>
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr><th>Time</th><th>Surface Temp</th><th>Air Temp</th><th>Heat Flux</th></tr>
+
+        </thead>
+        <tbody>
+        <?php foreach ($view->sensorData as $sensorData) {
+            echo '<tr><td>'. $sensorData->getTimeStamp() .'</td><td>' . $sensorData->getSurfaceTemp() . '</td><td>' . $sensorData->getAirTemp() . '</td><td>' . $sensorData->getheatFlux() . '</td></tr>';
+        } ?>
+        </tbody>
+    </table>
+</form>
+<?php require('template/footer.phtml') ?>

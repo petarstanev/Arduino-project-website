@@ -1,0 +1,19 @@
+<?php require('template/header.phtml') ?>
+
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr><th>Node ID</th><th>Sensor Name</th><th>Sensor Type</th></tr>
+
+        </thead>
+        <tbody>
+        <?php foreach ($view->sensorDataSet as $sensorData) {
+            $link="historicaldata.php?node_id=".$sensorData->getNodeID()."&type=".$sensorData->getsensorType();
+            echo '<tr><td>' . $sensorData->getNodeID() . '</td><td>' . $sensorData->getSensorName() . '</td><td>' . $sensorData->getSensorType() . '</td><td><a href='.$link.'>Historical Data</a></td></tr>';
+        } ?>
+        </tbody>
+    </table>
+</form>
+
+<?php require('template/footer.phtml') ?>
