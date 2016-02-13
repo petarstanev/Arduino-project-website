@@ -1,0 +1,50 @@
+<?php require('template/header.phtml') ?>
+
+<?php if (isset($results) ): ?>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Node ID</th>
+            <th>Sensor Type</th>
+            <th>Sensor Name</th>
+            <th>Air temperature</th>
+            <th>Surface temperature</th>
+            <?php if ($_GET['type'] != 'Temp'):?>
+                <th> Heat flux </th >
+            <?php endif;?>
+            <th>Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($results as $sensor):
+            ?>
+            <tr>
+                <td>
+                    <?php echo $sensor['nodeID']; ?>
+                </td>
+                <td>
+                    <?php echo $sensor['sensor_Type']; ?>
+                </td>
+                <td>
+                    <?php echo $sensor['sensor_Name']; ?>
+                </td>
+                <td>
+                    <?php echo $sensor['air_temp']; ?>
+                </td>
+                <td>
+                    <?php echo $sensor['surface_temp']; ?>
+                </td>
+                    <?php if ($_GET['type'] != 'Temp'){
+                        echo "<td>".$sensor['surface_temp']."</td>";
+                    }?>
+                <td>
+                    <?php echo $sensor['time_stamp']; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+</table>
+    <?php endif; ?>
+</div>
+
+<?php require('template/footer.phtml') ?>

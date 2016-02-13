@@ -11,8 +11,7 @@
         <?php
         if(isset($results)):
             foreach ($results as $sensor) {
-           
-            $link="historicaldata.php?node_id=".$sensor['nodeID']."&type=".$sensor['sensor_Type'];
+            $link="sensorData.php?node_id=".$sensor['nodeID']."&type=".$sensor['sensor_Type'];
             echo '<tr><td>' . $sensor['nodeID'] . '</td><td>' . $sensor['sensor_Name'] . '</td><td>' . $sensor['sensor_Type'] . '</td><td><a href='.$link.'>Historical Data</a></td></tr>';
         }
         endif;
