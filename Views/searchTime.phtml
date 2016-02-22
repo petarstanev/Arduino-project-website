@@ -5,8 +5,8 @@
         <div class="form-group col-xs-9">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
-                <input type="text" data-field="datetime" readonly id="startDate" name="startDate" value="2016-01-25 15:21:15">
-            <input type="text" data-field="datetime" readonly id="endDate" name="endDate" value="2016-01-25 15:58:10">
+            Start: <input type="text" data-field="datetime" readonly id="startDate" name="startDate" value="2016-01-25 15:21:15">
+            End: <input type="text" data-field="datetime" readonly id="endDate" name="endDate" value="2016-01-25 15:58:10">
                 <div id="dtBox"></div>
                 <br>
             <input type="radio" name="type" value="HFT" <?php if (isset($_POST['type']) && ($_POST['type'] == 'HFT')) echo 'checked="checked" '; ?> > HFT

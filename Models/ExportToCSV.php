@@ -9,27 +9,44 @@ require_once("Models/SearchTime.php");
  */
 class ExportToCSV extends Model
 {
-
-   public function export(){
-       $HFTresults = $this->getHFTResults();
-       $tempResults = $this->getTempResults();
-
-       $result = $this->generateCsv(array_merge($HFTresults, $tempResults));
-
-       $this->download_send_headers("data_export_" . date("Y-m-d") . ".csv");
-       echo $this->generateCsv(array_merge($HFTresults, $tempResults));
-      die();
-       return $result;
+    var $HFTresults;
+    var $tempResults;
+   public function ExportToCSV(){
+       parent::__construct();
+       $this->HFTresults = $this->getHFTResults();
+       $this->tempResults = $this->getTempResults();
    }
+
+   public function exportAll(){
+       $this->download_send_headers("data_export_" . date("Y-m-d") . ".csv");
+       echo $this->generateCsv(array_merge($this->HFTresults,  $this->tempResults));
+       die();
+   }
+
+
+    public function exportHFT(){
+        $this->download_send_headers("data_export_" . date("Y-m-d") . ".csv");
+        echo $this->generateCsv($this->HFTresults);
+        die();
+    }
+
+    public function exportTemp(){
+        $this->download_send_headers("data_export_" . date("Y-m-d") . ".csv");
+        echo $this->generateCsv($this->tempResults);
+        die();
+    }
 
     function generateCsv($data )
     {
-
+        var_dump($data);
+        die();
         $delimiter = ',';
         $enclosure = '"';
         $contents='';
         $handle = fopen('php://temp', 'r+');
+
         foreach ($data as $line) {
+
             fputcsv($handle, $line, $delimiter, $enclosure);
         }
         rewind($handle);
@@ -39,6 +56,7 @@ class ExportToCSV extends Model
         fclose($handle);
 
         $contents = preg_replace("<pre .*\s . \/pre >", "", $contents);
+       // $contents = preg_replace("\"", "", $contents);
         return $contents;
     }
 
